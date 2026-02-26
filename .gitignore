@@ -1,0 +1,25 @@
+# Output files - contain device configs, do not commit
+output/
+*.txt
+# But DO track these specific text files
+!examples/*.txt
+
+# SSH private keys - never commit credentials
+*.pem
+*.key
+*.ppk
+id_rsa
+id_ed25519
+id_ecdsa
+
+# PowerShell session / temp files
+*.ps1xml
+$null
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/settings.json

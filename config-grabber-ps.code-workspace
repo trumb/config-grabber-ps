@@ -1,0 +1,58 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.rulers": [100],
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+
+        // PowerShell settings
+        "[powershell]": {
+            "editor.defaultFormatter": "ms-vscode.powershell"
+        },
+
+        // Git
+        "git.defaultBranchName": "main",
+        "git.autofetch": true,
+
+        // Exclude output files from explorer and search
+        "files.exclude": {
+            "**/output": true
+        },
+        "search.exclude": {
+            "**/output": true
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "saoudrizwan.claude-dev",
+            "ms-vscode.powershell",
+            "ms-vscode.vscode-json"
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Run config-grabber (example)",
+                "type": "PowerShell",
+                "request": "launch",
+                "script": "${workspaceFolder}/config-grabber.ps1",
+                "args": [
+                    "-DeviceFile", "examples/devices.txt",
+                    "-CommandFile", "examples/commands.txt",
+                    "-Username", "admin",
+                    "-OutputDir", "output",
+                    "-Verbose"
+                ],
+                "cwd": "${workspaceFolder}"
+            }
+        ]
+    }
+}
