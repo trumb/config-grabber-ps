@@ -13,6 +13,9 @@ Uses the **[Posh-SSH](https://github.com/darkoperator/Posh-SSH)** module for SSH
 - **Password authentication** — prompted securely via `Read-Host -AsSecureString`
 - **SSH key authentication** via `-KeyFile`
 - **Enable / privileged EXEC mode** support (Cisco-style) via `-Enable`
+- **Automatic paging** — handles `--More--` and `---(more)---` prompts with adaptive Space/Tab toggle
+- **`CONFIG_GRABBER_PASSWORD`** environment variable — CI/CD-friendly password injection
+- **`-IgnoreHostKeyMismatch`** — fixes SSH key errors in PAT/NAT environments (same IP, different ports)
 - Output saved as **`<IP>_<YYYY-MM-DDTHHMMSS>.txt`** per device
 - Graceful error handling — a failed device is logged and skipped
 - Full `-Verbose` support for debug-level output
@@ -56,8 +59,16 @@ Install-Module -Name Posh-SSH -Scope CurrentUser
 | `-Enable` | Enter Cisco privileged EXEC mode after login. |
 | `-Port <int>` | Default SSH port (default: `22`). Per-device ports override this. |
 | `-Timeout <int>` | Connection timeout in seconds (default: `30`). |
+| `-MaxPageIterations <int>` | Max paging prompts to advance per command (default: `100`). |
+| `-IgnoreHostKeyMismatch` | Clear cached SSH host keys before each connection. Required for PAT/NAT. |
 | `-OutputDir <path>` | Output directory (default: current directory). |
 | `-Verbose` | Show debug-level logging. |
+
+### Environment Variables
+
+| Variable | Description |
+|---|---|
+| `CONFIG_GRABBER_PASSWORD` | SSH password. Checked automatically when `-Password` is not provided. Useful for CI/CD pipelines. |
 
 ## Examples
 
